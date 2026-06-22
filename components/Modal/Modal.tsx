@@ -1,7 +1,6 @@
-'use client';
-
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+
 import css from './Modal.module.css';
 
 interface ModalProps {
@@ -11,22 +10,23 @@ interface ModalProps {
 
 export default function Modal({ children, onClose }: ModalProps) {
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
 
-    document.addEventListener('keydown', handleKeyDown);
     document.body.style.overflow = 'hidden';
 
+    window.addEventListener('keydown', handleKey);
+
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKey);
     };
   }, [onClose]);
 
   return createPortal(
     <div className={css.backdrop} onClick={onClose}>
-      <div className={css.modal} onClick={e => e.stopPropagation()}>
+      <div className={css.modal} onClick={(e) => e.stopPropagation()}>
         {children}
       </div>
     </div>,

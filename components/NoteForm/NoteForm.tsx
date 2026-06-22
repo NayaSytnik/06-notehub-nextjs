@@ -56,12 +56,14 @@ export default function NoteForm({ onClose }: Props) {
     >
       {({ isSubmitting }) => (
         <Form className={css.form}>
+          {/* TITLE */}
           <div className={css.formGroup}>
             <label htmlFor="title">Title</label>
             <Field id="title" name="title" className={css.input} />
             <ErrorMessage name="title" component="span" className={css.error} />
           </div>
 
+          {/* CONTENT */}
           <div className={css.formGroup}>
             <label htmlFor="content">Content</label>
             <Field
@@ -73,6 +75,8 @@ export default function NoteForm({ onClose }: Props) {
             />
             <ErrorMessage name="content" component="span" className={css.error} />
           </div>
+
+          {/* TAG */}
           <div className={css.formGroup}>
             <label htmlFor="tag">Tag</label>
             <Field as="select" id="tag" name="tag" className={css.select}>
@@ -85,6 +89,7 @@ export default function NoteForm({ onClose }: Props) {
             <ErrorMessage name="tag" component="span" className={css.error} />
           </div>
 
+          {/* ACTIONS */}
           <div className={css.actions}>
             <button type="button" onClick={onClose} className={css.cancelButton}>
               Cancel

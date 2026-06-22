@@ -1,6 +1,6 @@
+import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
-import './globals.css';
 
 export default function RootLayout({
   children,
@@ -10,13 +10,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-
-        <main style={{ minHeight: 'calc(100vh - 120px)' }}>
+        <TanStackProvider>
+          <Header />
           {children}
-        </main>
-
-        <Footer />
+          <Footer />
+        </TanStackProvider>
       </body>
     </html>
   );
